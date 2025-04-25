@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://binjn7hmk361r"]
+[gd_scene load_steps=2 format=3 uid="uid://cqosg20aqen4j"]
 
-[ext_resource type="Script" uid="uid://dhjauxbba3mbm" path="res://scripts/card.gd" id="1"]
+[ext_resource type="Script" uid="uid://dcqun7b0mvfc3" path="res://scripts/card.gd" id="1"]
 
-[node name="card" type="Panel"]
+[node name="Card" type="Panel"]
 custom_minimum_size = Vector2(200, 120)
 script = ExtResource("1")
 

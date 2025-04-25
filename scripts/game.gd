@@ -11,22 +11,31 @@ extends Control
 func _ready():
 	print("🎮 Game scene loaded and ready!")
 
-	# Test placeholder kartice - možeš kasnije obrisati
-	card_zone.add_child(create_card_placeholder("Da li imate kašalj?"))
-	card_zone.add_child(create_card_placeholder("Uradite EKG"))
-	card_zone.add_child(create_card_placeholder("Uzmite uzorak krvi"))
+	if patient_info_panel.has_method("set_patient_info"):
+		patient_info_panel.set_patient_info("Petar Petrović", 45, "Muški", "Bol u grudima")
+	else:
+		push_error("❌ PatientInfoPanel nema funkciju 'set_patient_info'")
 
-func create_card_placeholder(text: String) -> Control:
-	var card = PanelContainer.new()
-	card.custom_minimum_size = Vector2(200, 100)
+	add_card_to_zone({
+		"name": "Postavite pitanje o bolu",
+		"description": "Da li imate bol u grudima?",
+		"type": "question"
+	})
 
-	var label = Label.new()
-	label.text = text
-	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	label.autowrap_mode = TextServer.AUTOWRAP_WORD
-	label.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	label.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	add_card_to_zone({
+		"name": "Uradite EKG",
+		"description": "Proverava srčanu aktivnost pacijenta.",
+		"type": "test"
+	})
 
-	card.add_child(label)
-	return card
+	add_card_to_zone({
+		"name": "Prepišite paracetamol",
+		"description": "Standardni tretman za temperaturu i bol.",
+		"type": "treatment"
+	})
+
+func add_card_to_zone(data: Dictionary) -> void:
+	var card_scene = preload("res://scenes/Card.tscn")
+	var card = card_scene.instantiate()
+	card.setup(data)
+	card_zone.add_child(card)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqkasmq57ck8i"]
+[gd_scene load_steps=3 format=3 uid="uid://7xxcbpb606ei"]
 
-[ext_resource type="Script" uid="uid://bgkercpk3tqlm" path="res://Scripts/Game.gd" id="1"]
+[ext_resource type="Script" uid="uid://bvfpfcp5xhl3s" path="res://scripts/game.gd" id="1"]
+[ext_resource type="PackedScene" uid="uid://dvbyvnbli2xio" path="res://scenes/PatientInfoPanel.tscn" id="2"]
 
-[node name="game" type="Control"]
+[node name="Game" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1")
@@ -19,8 +20,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
 
-[node name="PatientInfoPanel" type="PanelContainer" parent="MarginContainer/VBoxContainer/TopBar"]
-custom_minimum_size = Vector2(400, 80)
+[node name="PatientInfoPanel" parent="MarginContainer/VBoxContainer/TopBar" instance=ExtResource("2")]
 layout_mode = 2
 
 [node name="MedicalRecordButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
