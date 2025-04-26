@@ -13,15 +13,6 @@ anchor_bottom = 1.0
 
 [node name="Title" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Naslov kartice"
-horizontal_alignment = 1
-autowrap_mode = 1
 
 [node name="Description" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Opis kartice ide ovde."
-horizontal_alignment = 1
-vertical_alignment = 1
-autowrap_mode = 1
