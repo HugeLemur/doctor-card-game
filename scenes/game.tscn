@@ -1,17 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhds4chkq3m44"]
+[gd_scene load_steps=4 format=3 uid="uid://d2mb720y517qh"]
 
-[ext_resource type="Script" uid="uid://bvfpfcp5xhl3s" path="res://scripts/game.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://dvbyvnbli2xio" path="res://scenes/PatientInfoPanel.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://dvbyvnbli2xio" path="res://scenes/PatientInfoPanel.tscn" id="1"]
+[ext_resource type="Script" uid="uid://bvfpfcp5xhl3s" path="res://scripts/game.gd" id="1_cpr0p"]
+[ext_resource type="PackedScene" path="res://scenes/DiagnosisPopup.tscn" id="2"]
 
 [node name="Game" type="Control"]
-custom_minimum_size = Vector2(0, 9.485)
 layout_mode = 3
-anchor_right = 1.0
-anchor_bottom = 1.068
-offset_bottom = -0.0640259
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource("1")
+anchors_preset = 0
+script = ExtResource("1_cpr0p")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
@@ -20,98 +16,84 @@ anchor_bottom = 1.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 
 [node name="TopBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+size_flags_horizontal = 3
 
-[node name="PatientInfoPanel" parent="MarginContainer/VBoxContainer/TopBar" instance=ExtResource("2")]
+[node name="PatientInfoPanel" parent="MarginContainer/VBoxContainer/TopBar" instance=ExtResource("1")]
 layout_mode = 2
 
 [node name="MedicalRecordButton" type="Button" parent="MarginContainer/VBoxContainer/TopBar"]
-custom_minimum_size = Vector2(200, 80)
 layout_mode = 2
-text = "Prikaži karton"
+text = "Medical Record"
 
-[node name="PatientPortrait" type="ColorRect" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 200)
+[node name="MainHBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(1000, 450)
 layout_mode = 2
-color = Color(0.8, 0.8, 0.8, 1)
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="MainArea" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(0, 300)
+[node name="CardZoneScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MainHBox"]
+custom_minimum_size = Vector2(400, 300)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="CardZone" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainArea"]
-custom_minimum_size = Vector2(400, 0)
+[node name="CardZone" type="TabContainer" parent="MarginContainer/VBoxContainer/MainHBox/CardZoneScroll"]
 layout_mode = 2
-
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/MainArea/CardZone"]
-layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 current_tab = 0
 
-[node name="CommunicateTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainArea/CardZone/TabContainer"]
+[node name="CommunicateTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainHBox/CardZoneScroll/CardZone"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_tab_index = 0
 
-[node name="TestTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainArea/CardZone/TabContainer"]
+[node name="TestTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainHBox/CardZoneScroll/CardZone"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_tab_index = 1
 
-[node name="TreatmentTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainArea/CardZone/TabContainer"]
+[node name="TreatmentTab" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MainHBox/CardZoneScroll/CardZone"]
 visible = false
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 metadata/_tab_index = 2
 
-[node name="ResponsePanel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MainArea"]
-custom_minimum_size = Vector2(200, 0)
+[node name="ResponsePanelScroll" type="ScrollContainer" parent="MarginContainer/VBoxContainer/MainHBox"]
 layout_mode = 2
-text = "Ovde će ići odgovori pacijenta i rezultati testova."
+size_flags_horizontal = 3
+
+[node name="ResponsePanel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/MainHBox/ResponsePanelScroll"]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "🩺 Patient responses will appear here."
 
 [node name="ActionBar" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 80)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="EndTurnButton" type="Button" parent="MarginContainer/VBoxContainer/ActionBar"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Završi Pregled"
+text = "End Turn"
 
-[node name="ConfirmDiagnosisButton" type="Button" parent="MarginContainer/VBoxContainer/ActionBar"]
+[node name="DiagnosisButton" type="Button" parent="MarginContainer/VBoxContainer/ActionBar"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Potvrdi Dijagnozu"
+text = "Diagnosis"
 
 [node name="ReferButton" type="Button" parent="MarginContainer/VBoxContainer/ActionBar"]
 layout_mode = 2
-size_flags_horizontal = 3
-text = "Uputi Specijalisti"
+text = "Refer to Specialist"
 
-[node name="DiagnosisPopup" type="Window" parent="MarginContainer/VBoxContainer"]
-title = "Dijagnoza"
-size = Vector2i(400, 200)
-visible = false
-
-[node name="PopupMargin" type="MarginContainer" parent="MarginContainer/VBoxContainer/DiagnosisPopup"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 10.0
-offset_top = 10.0
-offset_right = -10.0
-offset_bottom = -10.0
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/DiagnosisPopup/PopupMargin"]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/DiagnosisPopup/PopupMargin/VBoxContainer"]
-layout_mode = 2
-text = "Unesite dijagnozu:"
-
-[node name="DiagnosisLineEdit" type="LineEdit" parent="MarginContainer/VBoxContainer/DiagnosisPopup/PopupMargin/VBoxContainer"]
-layout_mode = 2
-
-[node name="DiagnosisConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/DiagnosisPopup/PopupMargin/VBoxContainer"]
-layout_mode = 2
-text = "Potvrdi"
+[node name="DiagnosisPopup" parent="MarginContainer/VBoxContainer" instance=ExtResource("2")]

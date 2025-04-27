@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Pneumonia",
+    "symptoms": ["cough", "fever", "shortness of breath"],
+    "test_results": ["chest x-ray abnormal", "high white blood cell count"],
+    "treatments": ["antibiotics", "oxygen therapy"]
+  },
+  {
+    "name": "Heart Attack",
+    "symptoms": ["chest pain", "shortness of breath", "nausea"],
+    "test_results": ["abnormal ECG", "elevated troponin"],
+    "treatments": ["aspirin", "angioplasty"]
+  },
+  {
+    "name": "Anemia",
+    "symptoms": ["fatigue", "pale skin", "shortness of breath"],
+    "test_results": ["low hemoglobin", "low iron levels"],
+    "treatments": ["iron supplements", "blood transfusion"]
+  }
+]
